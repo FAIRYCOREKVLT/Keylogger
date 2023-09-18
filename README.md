@@ -11,4 +11,5 @@ Requires Python3 and Telegram account.
 
 Notify me on e-mail if you meet any errors, I'll be thankful.
 
-Support me: knivedschizo@proton.me (PayPal), www.buymeacoffee.com/knivedschi6
+Support me:
+www.buymeacoffee.com/fairycorekvlt
