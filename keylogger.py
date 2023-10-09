@@ -68,4 +68,4 @@ async def main():
         except KeyboardInterrupt:
             await recursive_part()
 
-# asyncio.run(main())
+asyncio.run(main())
