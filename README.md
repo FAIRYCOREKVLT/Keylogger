@@ -1,4 +1,4 @@
-Simple keylogger imitation with output through Telegram bot.
+Simple keylogger imitation with output through Telegram bot. Rewritten to fully async code.
 
 1. Run install.py to install required Python libraries
 2. Use @BotFather bot in Telegram to create an output bot
