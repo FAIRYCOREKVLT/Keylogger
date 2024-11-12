@@ -10,6 +10,3 @@ Tested on Windows 10.
 Requires Python3 and Telegram account.
 
 Contact me if you meet any errors or have any ideas, I'll be thankful.
-
-Support me:
-www.buymeacoffee.com/fairycorekvlt
